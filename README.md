@@ -47,14 +47,14 @@ systems({
     },
     envs: {
       // set instances variables
-      MYSQL_USER         : "azk",
-      MYSQL_PASS         : "azk",
-      MYSQL_DATABASE     : "#{system.name}_development",
+      MYSQL_USER            : "azk",
+      MYSQL_ROOT_PASSWORD   : "azk",
+      MYSQL_DATABASE        : "#{system.name}_development",
     },
     export_envs: {
       // check this gist to configure your database
       // https://gist.github.com/gullitmiranda/62082f2e47c364ef9617
-      DATABASE_URL: "mysql2://#{envs.MYSQL_USER}:#{envs.MYSQL_PASS}@#{net.host}:#{net.port.data}/${envs.MYSQL_DATABASE}",
+      DATABASE_URL: "mysql2://#{envs.MYSQL_USER}:#{envs.MYSQL_ROOT_PASSWORD}@#{net.host}:#{net.port.data}/${envs.MYSQL_DATABASE}",
     },
   },
 });
@@ -112,7 +112,7 @@ Environment variables
 
 `MYSQL_USER`: Set a specific username for the admin account. (default 'azk')
 
-`MYSQL_PASS`: Set a specific password for the admin account. (default 'azk')
+`MYSQL_ROOT_PASSWORD`: Set a specific password for the admin account. (default 'azk')
 
 `STARTUP_SQL`: Defines one or more sql scripts separated by spaces to initialize the database. Note that the scripts must be inside the container, so you may need to mount them
 
@@ -144,4 +144,3 @@ $ /import_sql.sh <user> <pass> <dump.sql>
 Azuki Dockerfiles distributed under the [Apache License][license].
 
 [license]: ./LICENSE
-
